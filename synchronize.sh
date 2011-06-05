@@ -34,6 +34,7 @@ BACKUP=
 DESTINATION=
 SOURCE=
 LOG=
+PROGRESS=
 RSYNC_OPTS="--verbose --update --recursive --xattrs --compress --times --stats --size-only --exclude ".DS_Store" --delete"
 
 ### BEGIN DEFINE FUNCTIONS ###
@@ -45,14 +46,14 @@ usage()
 
 do_rsync()
 {
-	rsync ${RSYNC_OPTS} ${LOG_OPTS} ${BACKUP_OPTS} ${SOURCE} ${DESTINATION}
+	rsync ${RSYNC_OPTS} ${PROGRESS} ${LOG_OPTS} ${BACKUP_OPTS} ${SOURCE} ${DESTINATION}
 }
 ### END DEFINE FUNCTIONS ###
 
 ### BEGIN PARAMETERS LOADING ###
 echo ""
 
-while getopts s:d:b:l: option
+while getopts s:d:b:l:p option
 do
  case $option in
   s)
@@ -70,6 +71,9 @@ do
   l)
    echo -e "$BLEU" "Fichier log : " "$JAUNE" "$OPTARG" "$NORMAL"
    LOG=$OPTARG
+   ;;
+  p)
+   PROGRESS=" --progress"
    ;;
   *) usage
    ;; 
@@ -93,7 +97,7 @@ fi
 if [[ ! -d $SOURCE ]]
 then
 	echo -e "$ROUGE" "Dossier source introuvable" "$NORMAL"
-	usage
+#	usage
 fi
 
 if [[ ! -d $DESTINATION ]]
