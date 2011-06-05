@@ -30,7 +30,7 @@ CYAN="\\033[1;36m"
 ### END DEFINE COLORS ###
 
 ### INIT VARS ###
-BACKUP=false
+BACKUP=
 DESTINATION=
 SOURCE=
 LOG=
@@ -64,8 +64,7 @@ do
    ;;
   b)
    echo -e "$BLEU" "Dossier backup : " "$JAUNE" "$OPTARG" "$NORMAL"
-   BACKUP=true
-   BACKUP_DIR=$OPTARG
+   BACKUP=$OPTARG
    ;;
   l)
    echo -e "$BLEU" "Fichier log : " "$JAUNE" "$OPTARG" "$NORMAL"
@@ -108,14 +107,14 @@ then
 	usage
 fi
 
-if [[ $BACKUP ]]
+if [[ -n $BACKUP ]]
 then
-	if [[ ! -d $BACKUP_DIR ]]
+	if [[ ! -d $BACKUP ]]
 	then
 		echo -e "$ROUGE" "Dossier backup introuvable" "$NORMAL"
 		usage
     else
-    	BACKUP_OPTS=" --backup --backup-dir=${BACKUP_DIR}"
+        BACKUP_OPTS=" --backup --backup-dir=${BACKUP}"
 	fi
 fi
 
