@@ -34,6 +34,7 @@ BACKUP=
 DESTINATION=
 SOURCE=
 LOG=
+RSYNC_OPTS="--verbose --update --recursive --xattrs --compress --times --stats --size-only --exclude ".DS_Store" --delete"
 
 ### BEGIN DEFINE FUNCTIONS ###
 usage()
@@ -44,7 +45,7 @@ usage()
 
 do_rsync()
 {
-	rsync -cuvEr --progress --stats --filter "- .DS_Store" --delete ${LOG_OPTS} ${BACKUP_OPTS} ${SOURCE} ${DESTINATION}
+	rsync ${RSYNC_OPTS} ${LOG_OPTS} ${BACKUP_OPTS} ${SOURCE} ${DESTINATION}
 }
 ### END DEFINE FUNCTIONS ###
 
