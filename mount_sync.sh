@@ -48,7 +48,12 @@ umount_dir()
 }
 ### END DEFINE FUNCTIONS ###
 
-mount_dir ${CONFIG_DST}
-./synchronize.sh -s "${CONFIG_SRC}" -d "${VOLUMES_PREFIX}${CONFIG_DST}" -l "${CONFIG_LOG}" -b "${CONFIG_BACKUP}"
-umount_dir ${CONFIG_DST}
+if [[ -z ${NAS_IP} ]]
+then
+       ./synchronize.sh -s "${CONFIG_SRC}" -d "${CONFIG_DST}" -l "${CONFIG_LOG}" -b "${CONFIG_BACKUP}"
+else
+       mount_dir ${CONFIG_DST}
+       ./synchronize.sh -s "${CONFIG_SRC}" -d "${VOLUMES_PREFIX}${CONFIG_DST}" -l "${CONFIG_LOG}" -b "${CONFIG_BACKUP}"
+       umount_dir ${CONFIG_DST}
+fi
 exit
