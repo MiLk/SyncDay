@@ -74,30 +74,32 @@ done
 ### BEGIN PARAMETERS VALIDATORS ###
 if [[ -z $SOURCE ]]
 then
-	echo -e "$ROUGE" "Erreur: Veuillez saisir un dossier source" "$NORMAL"
+	echo -e "$ROUGE" "Erreur: Veuillez saisir un dossier source." "$NORMAL"
 	usage
 fi
 
 if [[ -z $DESTINATION ]]
 then
-	echo -e "$ROUGE" "Erreur: Veuillez saisir un dossier destination" "$NORMAL"
+	echo -e "$ROUGE" "Erreur: Veuillez saisir un dossier destination." "$NORMAL"
 	usage
 fi
 
 if [[ ! -e $SOURCE ]]
 then
-	echo -e "$JAUNE" "Avertissement: Dossier source introuvable" "$NORMAL"
-fi
-
-if [[ ! -e $DESTINATION ]]
-then
-	echo -e "$ROUGE" "Erreur: Dossier destination introuvable" "$NORMAL"
+	echo -e "$JAUNE" "Avertissement: Dossier source introuvable." "$NORMAL"
 	usage
 fi
 
+# Création automatique si vide - contrôle inutile
+#if [[ ! -e $DESTINATION ]]
+#then
+#	echo -e "$ROUGE" "Erreur: Dossier destination introuvable." "$NORMAL"
+#	usage
+#fi
+
 if [[ $SOURCE = $DESTINATION ]]
 then
-	echo -e "$ROUGE" "Erreur: Dossier source et destination identique" "$NORMAL"
+	echo -e "$ROUGE" "Erreur: Dossier source et destination identique." "$NORMAL"
 	usage
 fi
 
@@ -105,11 +107,12 @@ if [[ -n $BACKUP ]]
 then
 	if [[ ! -d $BACKUP ]]
 	then
-		echo -e "$ROUGE" "Erreur: Dossier backup introuvable" "$NORMAL"
-		usage
-    else
-        BACKUP_OPTS=" --backup --backup-dir=${BACKUP}"
-	fi
+		mkdir -p $BACKUP
+		echo -e "$JAUNE" "Avertissement: Le dossier " "$BACKUP" "a été créé." "$NORMAL"
+    fi
+    DATE="`date +%Y-%m-%d`"
+    mkdir -p ${BACKUP}${DATE}
+    BACKUP_OPTS=" --backup --backup-dir=${BACKUP}${DATE}"
 fi
 
 if [[ -n $LOG ]]
