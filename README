@@ -1,8 +1,10 @@
-== DESCRIPTION
+== DESCRIPTION ==
 
 Cet outil vous permet de sychroniser simplement vos fichiers sur plusieurs disques afin de conserver plusieurs copies à jour.
 
 Ce script est conçu pour fonctionner en premier lieu sous Mac OS X.
+
+Video expliquant le lancement manuel : http://www.youtube.com/watch?v=8FAhF3UourI
 
 == DEPENDENCIES ==
 
@@ -16,7 +18,7 @@ Capabilities:
 
 Installation : http://www.bombich.com/rsync.html
 
-== NOTICE
+== NOTICE ==
 
 This software is copyright (c) 2011 by Emilien Kenler <hello@emilienkenler.com>.
 
