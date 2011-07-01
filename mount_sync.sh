@@ -13,7 +13,7 @@
 #                                                                                                           #
 # Example:                                                                                                  #
 #  export SYNC_DIR="$HOME/Dev/Rsync/"                                                                       #
-# ./mount_sync.sh config/config.sh                                                                                 #
+# ./mount_sync.sh config/config.sh                                                                          #
 #                                                                                                           #
 #############################################################################################################
 

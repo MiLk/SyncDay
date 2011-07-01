@@ -9,11 +9,11 @@
 #                                                                                                           #
 #############################################################################################################
 
-NAS_IP="192.168.0.11"
+NAS_IP=""
 NAS_USER="admin"
 NAS_PASS="admin"
 
 CONFIG_SRC="${HOME}/Dev/Rsync/From"
-CONFIG_DST="Test"
+CONFIG_DST="${HOME}/Dev/Rsync/To"
 CONFIG_LOG="${HOME}/Dev/Rsync/rsync.log"
 CONFIG_BACKUP="${HOME}/Dev/Rsync/Backup"
