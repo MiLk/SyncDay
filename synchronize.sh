@@ -16,8 +16,8 @@
 # ./synchronize.sh -s ${SYNC_DIR}/From/ -d ${SYNC_DIR}/To -b ${SYNC_DIR}/Backup/ -l ${SYNC_DIR}/rsync.log   #
 #                                                                                                           #
 #############################################################################################################
-
-. ./inc.sh
+progdir=`dirname $0`
+. ${progdir}/inc.sh
 
 ### INIT VARS ###
 BACKUP=
